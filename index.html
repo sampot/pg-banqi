@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="華語圈懷舊暗棋：翻子、吃子、人機對戰。純前端 Playgrounds SAM。"
+    />
+    <title>暗棋對弈</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <h1>暗棋對弈</h1>
+        <p class="tagline">翻子吃子 · 人機對戰 · 純娛樂</p>
+      </header>
+
+      <section class="meter" aria-label="對局狀態">
+        <div class="meter-item">
+          <span class="label">陣營</span>
+          <strong id="side">—</strong>
+        </div>
+        <div class="meter-item">
+          <span class="label">剩餘 你/電腦</span>
+          <strong id="remain">32</strong>
+        </div>
+        <div class="meter-actions">
+          <button type="button" id="btn-mute" class="secondary" aria-pressed="true">
+            音效開
+          </button>
+        </div>
+      </section>
+
+      <div class="stage">
+        <canvas
+          id="game"
+          width="480"
+          height="640"
+          role="img"
+          aria-label="暗棋棋盤"
+        ></canvas>
+      </div>
+
+      <p id="status" class="status" role="status">翻開任一暗子，決定你的陣營</p>
+
+      <div class="controls">
+        <button type="button" id="btn-reset" class="secondary">新局</button>
+      </div>
+
+      <p class="hint">
+        先翻一子決定紅／黑；之後可翻暗子，或點己方明子再點目標格移動／吃子。炮需隔一子打；兵可吃將，將不能吃兵。
+      </p>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
