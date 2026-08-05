@@ -4,14 +4,14 @@
 
 棋種為民間常見玩法之實作小品，非任一商業軟體／商標復刻。
 
-也可當作 [Playgrounds（遊樂場）](https://samkuo.me/playgrounds/) 的 **SAM**（`index.html` 入口）。規則或 AI 想再調？開進來玩，再叫 AI 幫你改一版。
+也可當作 [Playgrounds（遊樂場）](https://play.samkuo.me/) 的 **SAM**（`index.html` 入口）。規則或 AI 想再調？開進來玩，再叫 AI 幫你改一版。
 
 ## 一鍵開 SAM 小
 
-**[一鍵開 SAM 小](https://samkuo.me/playgrounds/?open=sampot%2Fpg-banqi&name=%E6%9A%97%E6%A3%8B%E5%B0%8D%E5%BC%88)**
+**[一鍵開 SAM 小](https://play.samkuo.me/?open=sampot%2Fpg-banqi&name=%E6%9A%97%E6%A3%8B%E5%B0%8D%E5%BC%88)**
 
 ```
-https://samkuo.me/playgrounds/?open=sampot/pg-banqi&name=暗棋對弈
+https://play.samkuo.me/?open=sampot/pg-banqi&name=暗棋對弈
 ```
 
 同源會重用本機已匯入的沙盒；要強制新建可加 `&fresh=1`。
