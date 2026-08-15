@@ -111,8 +111,12 @@ export class BanqiGame {
     return r * COLS + c;
   }
 
+  isInside(r, c) {
+    return r >= 0 && r < ROWS && c >= 0 && c < COLS;
+  }
+
   at(r, c) {
-    if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return null;
+    if (!this.isInside(r, c)) return null;
     return this.board[this.idx(r, c)];
   }
 
@@ -148,9 +152,9 @@ export class BanqiGame {
       if (!piece || piece.faceUp) return { events, ok: false };
       piece.faceUp = true;
       this.playerSide = piece.side;
-      this.turn = this.playerSide;
+      this.turn = this.aiSide;
       this.selected = null;
-      this.message = `你是${this.playerSide === "red" ? "紅" : "黑"}方 · 繼續行動`;
+      this.message = `你是${this.playerSide === "red" ? "紅" : "黑"}方 · 輪到電腦`;
       events.push("flip", "deal");
       this.checkEnd(events);
       return { events, ok: true };
@@ -213,6 +217,7 @@ export class BanqiGame {
    * @param {string[]} events
    */
   tryMove(r0, c0, r1, c1, events) {
+    if (!this.isInside(r0, c0) || !this.isInside(r1, c1)) return false;
     const mover = this.at(r0, c0);
     if (!mover || !mover.faceUp) return false;
     const target = this.at(r1, c1);
@@ -287,6 +292,7 @@ export class BanqiGame {
         ]) {
           const r2 = r + dr;
           const c2 = c + dc;
+          if (!this.isInside(r2, c2)) continue;
           const t = this.at(r2, c2);
           if (!t) {
             moves.push({ r, c, r2, c2, score: 1 });
@@ -377,9 +383,9 @@ export class BanqiGame {
     }
 
     // Any remaining move
-    if (moves.length) {
-      const m = moves[Math.floor(Math.random() * moves.length)];
+    for (const m of moves) {
       this.tryMove(m.r, m.c, m.r2, m.c2, events);
+      if (!events.length) continue;
       this.turn = this.playerSide;
       this.message = "電腦移動了一子";
       this.checkEnd(events);
